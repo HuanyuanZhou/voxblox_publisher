@@ -1,0 +1,26 @@
+<launch>
+    <node name="depth_predict" pkg="data_publisher" type="depth_prediction.py" output="screen">
+        <param name="dmax" value="5" type="double" />
+        <param name="dmin" value="0.5" type="double" />
+        <param name="initN" value="192" type="int" />
+        <param name="ndepths" value="128,32,8" type="str" />
+        <param name="fea_channels" value="8" type="int" />
+        <param name="cr_base_chs" value="8,8,8" type="str" />
+        <param name="depth_inter_r" value="4,2,1" type="str" />
+        <param name="grad_method" value="detach" type="str" />
+        <param name="refine" value="false" type="bool" />
+        <param name="nores" value="false" type="bool" />
+        <param name="isinv" value="false" />
+        <param name="share_cr" value="false" />
+        <param name="modelpath" value="/home/zhy/catkin_ws/src/data_publisher/scripts/checkpoint/model_000015.ckpt" type="str" />
+        <param name="rfRange" value="5" />
+        <param name="nviews" value="5" />
+        <param name="wb" value="1.0" />
+        <param name="wt" value="1.0" />
+        <param name="imgpath" value="./imgs" type="str" />
+        <param name="depthpath" value="./depths" type="str" />
+        <param name="conf" value="0.9" />
+        <param name="relthetaMax" value="10" />
+        <param name="baselinek" value="1" />
+    </node>
+</launch>

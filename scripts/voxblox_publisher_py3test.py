@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/home/zhy/anaconda3/envs/zhy/bin/python
 from __future__ import print_function
 import sys
 import os
@@ -15,6 +15,7 @@ from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 
 from utils import *
+
 
 def read_TUM_pose_file(pose_file):
     if not os.path.exists(pose_file):
@@ -65,11 +66,13 @@ if __name__ == '__main__':
     # depth_vis_pub = rospy.Publisher("depth_visual_image", Image, queue_size=100)
 
     # 2.settings
-    data_dir = "/home/zhy/datasets/TUM/rgbd_dataset_freiburg1_teddy"
+    data_dir = "/home/zhy/HDD/zhy/datasets/TUM/rgbd_dataset_freiburg1_teddy"
     pose_file_name = "associate.txt"
     calib_file_name = "calib.txt"
     depth_dir = "idx_depth"
     img_dir = "idx_rgb"
+
+    print(sys.version)
 
     pose_path = os.path.join(data_dir, pose_file_name)
     depths_path = os.path.join(data_dir, depth_dir)

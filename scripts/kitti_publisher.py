@@ -2,6 +2,8 @@
 from __future__ import print_function
 import sys
 import os
+
+from torch._C import dtype
 import rospy
 import cv2
 from std_msgs.msg import String
@@ -27,6 +29,20 @@ if __name__ == '__main__':
     rate = rospy.Rate(5)
     cv2.namedWindow("left")
     cv2.moveWindow("left", 100, 100)
+
+    poses = []
+    poses_file = "/home/zhy/HDD/zhy/datasets/kitti_odo/dataset/poses/00.txt"
+
+    with open(poses_file, 'r') as f:
+        lines = f.readlines()
+
+    for line in lines:
+        info = line.strip().split(' ')
+        nowpose = np.eye(4, dtype=np.float32)
+        nowpose[0, 0], nowpose[0, 1], nowpose[0, 2], nowpose[0, 3] = float(info[0]), float(info[1]), float(info[2]), float(info[3])
+        nowpose[1, 0], nowpose[1, 1], nowpose[1, 2], nowpose[1, 3] = float(info[4]), float(info[5]), float(info[6]), float(info[7])
+        nowpose[1, 0], nowpose[2, 1], nowpose[2, 2], nowpose[2, 3] = float(info[8]), float(info[9]), float(info[10]), float(info[11])
+        poses.append(nowpose)
 
     while True:
         print(image_index)
